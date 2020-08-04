@@ -1,13 +1,8 @@
-# BaseKotlinAndroidProject
-Base Kotlin Android Project
+# Arduino-android-serial-bluetooth
+
+Arduino terkoneksi dengan android melalui bluetooth serial
 
 Tech Stack :
 - MVVM
-- Retrofit2
 - Koin (Dependency Injection)
-- Rxjava2
-- Coroutine
-- Glide
-- Anko
-- groupie adapter (Recycler View)
-- alerter
+
