@@ -24,7 +24,7 @@ interface BluetoothManager : AutoCloseable {
      * @return An RxJava Single, that will either emit
      * a BluetoothSerialDevice or a BluetoothConnectException
      */
-    fun openSerialDevice(mac: String): Single<BluetoothSerialDevice>
+    suspend fun openSerialDevice(mac: String): BluetoothSerialDevice
 
     /**
      * @param mac The MAC address of the device
@@ -33,7 +33,7 @@ interface BluetoothManager : AutoCloseable {
      * @return An RxJava Single, that will either emit
      * a BluetoothSerialDevice or a BluetoothConnectException
      */
-    fun openSerialDevice(mac: String, charset: Charset): Single<BluetoothSerialDevice>
+    suspend fun openSerialDevice(mac: String, charset: Charset): BluetoothSerialDevice
 
     /**
      * Closes the connection to a device. After calling,

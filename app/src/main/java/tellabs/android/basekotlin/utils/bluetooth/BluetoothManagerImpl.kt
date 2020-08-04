@@ -17,15 +17,14 @@ internal class BluetoothManagerImpl(private val adapter: BluetoothAdapter) : Blu
     override val pairedDevices: Collection<BluetoothDevice>
         get() = adapter.bondedDevices
 
-    override fun openSerialDevice(mac: String): Single<BluetoothSerialDevice> {
+    override suspend fun openSerialDevice(mac: String): BluetoothSerialDevice {
         return openSerialDevice(mac, StandardCharsets.UTF_8)
     }
 
-    override fun openSerialDevice(mac: String, charset: Charset): Single<BluetoothSerialDevice> {
+    override suspend fun openSerialDevice(mac: String, charset: Charset): BluetoothSerialDevice {
         return if (devices.containsKey(mac)) {
-            Single.just(devices[mac]!!)
+           devices[mac]!!
         } else {
-            Single.fromCallable {
                 try {
                     val device = adapter.getRemoteDevice(mac)
                     val socket = device.createInsecureRfcommSocketToServiceRecord(SPP_UUID)
@@ -33,11 +32,11 @@ internal class BluetoothManagerImpl(private val adapter: BluetoothAdapter) : Blu
                     socket.connect()
                     val serialDevice = BluetoothSerialDeviceImpl(mac, socket, charset)
                     devices[mac] = serialDevice
-                    return@fromCallable serialDevice
+                    return serialDevice
                 } catch (e: Exception) {
                     throw BluetoothConnectException(e)
                 }
-            }
+
         }
     }
 
