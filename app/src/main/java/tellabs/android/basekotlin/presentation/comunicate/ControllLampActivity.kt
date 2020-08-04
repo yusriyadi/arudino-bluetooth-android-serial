@@ -1,6 +1,7 @@
 package tellabs.android.basekotlin.presentation.comunicate
 
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
@@ -11,15 +12,18 @@ import kotlinx.coroutines.launch
 import org.jetbrains.anko.toast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import tellabs.android.basekotlin.R
+import tellabs.android.basekotlin.utils.MyDialog
 
 class ControllLampActivity : AppCompatActivity() {
     val vm by viewModel<ComunicateViewModel>()
     var mac = ""
+    lateinit var myDialog : MyDialog
     private var doubleBackToExitPressedOnce: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_controll_lamp)
 
+        myDialog = MyDialog(this)
         tvDeviceName.text = "Bluetooth Device Name : " + intent.getStringExtra("deviceName")
         mac = intent.getStringExtra("deviceMac")
 
@@ -38,6 +42,7 @@ class ControllLampActivity : AppCompatActivity() {
         vm.getConnectionStatus().observe(this, Observer {
             when (it) {
                 ComunicateViewModel.ConnectionStatus.TERHUBUNG -> {
+                    myDialog.dismiss()
                     imgStat.load(R.drawable.bg_green)
                     toggleButton.isEnabled = true
                     btnConn.setText("Putuskan")
@@ -47,10 +52,12 @@ class ControllLampActivity : AppCompatActivity() {
 
                 }
                 ComunicateViewModel.ConnectionStatus.TERPUTUS -> {
+                    myDialog.dismiss()
                     imgStat.load(R.drawable.bg_red)
                     toggleButton.isEnabled = false
                     btnConn.setText("Sambungkan")
                     btnConn.setOnClickListener {
+                        myDialog.show()
                         vm.connect(mac)
                     }
 

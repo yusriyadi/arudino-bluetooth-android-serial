@@ -47,11 +47,11 @@ class ComunicateViewModel() : ViewModel() {
     fun connect(mac: String) {
         // Check we are not already connecting or connected
         if (!connectionAttemptedOrMade) {
+            connectionStatusData.value = ConnectionStatus.MENGHUBUNGKAN
             d { "hitted" }
             // Connect asynchronously
             viewModelScope.launch {
                 kotlin.runCatching {
-                    connectionStatusData.value = ConnectionStatus.MENGHUBUNGKAN
                     bluetoothManager.openSerialDevice(mac)
                 }.onSuccess { device ->
                     d { "success" }
