@@ -13,8 +13,6 @@ import tellabs.android.basekotlin.data.remote.AuthInterceptor
 import tellabs.android.basekotlin.data.repository.TeamRepository
 import tellabs.android.basekotlin.data.repository.TeamRepositoryImpl
 import tellabs.android.basekotlin.data.remote.service.TeamService
-import tellabs.android.basekotlin.presentation.comunicate.ComunicateViewModel
-import tellabs.android.basekotlin.presentation.home.PairedDeviceViewModel
 
 val networkModule = module {
     single { PreferencesHelper(androidContext()) }
@@ -26,8 +24,7 @@ val networkModule = module {
 }
 
 val viewModelModule = module {
-    viewModel { PairedDeviceViewModel() }
-    viewModel { ComunicateViewModel() }
+
 }
 
 val dataBaseModule = module {
