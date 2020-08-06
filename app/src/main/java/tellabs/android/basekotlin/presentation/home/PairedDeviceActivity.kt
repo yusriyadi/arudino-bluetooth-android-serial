@@ -15,6 +15,7 @@ import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.Section
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import kotlinx.android.synthetic.main.activity_paired_device.*
 import me.aflak.bluetooth.Bluetooth
@@ -49,7 +50,7 @@ class PairedDeviceActivity : AppCompatActivity() {
     private fun setDeviceToAdapter(devices : List<BluetoothDevice>) {
         groupAdapter.clear()
         devices.forEach {
-            groupAdapter.add(PairedDeviceItemAdapter(it) {device->
+            groupAdapter.add(PairedDeviceItemAdapter(it) { device->
                 val intent = Intent(this, ControllLampActivity::class.java)
                 intent.putExtra("device", device)
              startActivity(intent)
@@ -89,32 +90,6 @@ class PairedDeviceActivity : AppCompatActivity() {
     fun setDeviceToList(){
         d { "devices :" + bluetooth.pairedDevices }
         setDeviceToAdapter(bluetooth.pairedDevices)
-    }
-
-    private fun oldWay() {
-//        vm.getPairedList()
-//        vm.observePairedDevice().observe(this, Observer {
-//            when (it) {
-//                is UiState.Loading -> {
-//
-//                }
-//                is UiState.Success -> {
-//                    groupAdapter.clear()
-//                    it.data.forEach {
-//                        val item = PairedDevice(it.name, it.address)
-//                        groupAdapter.add(PairedDeviceItemAdapter(item) {
-//                            startActivity<ControllLampActivity>(
-//                                "deviceName" to it.name,
-//                                "deviceMac" to it.mac
-//                            )
-//                        })
-//                    }
-//                }
-//                is UiState.Error -> {
-//
-//                }
-//            }
-//        })
     }
 
 

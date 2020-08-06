@@ -29,6 +29,8 @@ class ControllLampActivity : AppCompatActivity() {
     lateinit var bluetooth: Bluetooth
 
     private var doubleBackToExitPressedOnce: Boolean = false
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_controll_lamp)
@@ -147,10 +149,12 @@ class ControllLampActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        bluetooth.onStart();
-        bluetooth.connectToDevice(device)
-        imgStat.load(R.drawable.bg_yellow_rounded)
-        myDialog.show()
+        if (!bluetooth.isConnected){
+            bluetooth.onStart();
+            bluetooth.connectToDevice(device)
+            imgStat.load(R.drawable.bg_yellow_rounded)
+            myDialog.show()
+        }
     }
 
     override fun onBackPressed() {
