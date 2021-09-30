@@ -21,7 +21,7 @@ import tellabs.android.basekotlin.utils.MyDialog
 import tellabs.android.basekotlin.utils.visible
 
 
-class ControllLampActivity : AppCompatActivity() {
+class SwitchControlActivity : AppCompatActivity() {
     //val vm by viewModel<ComunicateViewModel>()
 
     lateinit var myDialog: MyDialog

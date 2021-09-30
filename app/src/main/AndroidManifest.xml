@@ -23,7 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.comunicate.ControllLampActivity" />
+        <activity android:name=".presentation.comunicate.SwitchControlActivity" />
         <activity android:name=".presentation.home.PairedDeviceActivity">
 
         </activity>

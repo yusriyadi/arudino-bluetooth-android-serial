@@ -1,30 +1,20 @@
 package tellabs.android.basekotlin.presentation.home
 
-import android.Manifest
 import android.bluetooth.BluetoothDevice
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log.d
-import android.webkit.PermissionRequest
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.ajalt.timberkt.d
-import com.karumi.dexter.Dexter
-import com.karumi.dexter.MultiplePermissionsReport
-import com.karumi.dexter.PermissionToken
-import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.Section
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import kotlinx.android.synthetic.main.activity_paired_device.*
 import me.aflak.bluetooth.Bluetooth
 import me.aflak.bluetooth.interfaces.BluetoothCallback
 import me.aflak.bluetooth.interfaces.DiscoveryCallback
-import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import tellabs.android.basekotlin.R
-import tellabs.android.basekotlin.presentation.comunicate.ControllLampActivity
+import tellabs.android.basekotlin.presentation.comunicate.SwitchControlActivity
 
 
 class PairedDeviceActivity : AppCompatActivity() {
@@ -51,7 +41,7 @@ class PairedDeviceActivity : AppCompatActivity() {
         groupAdapter.clear()
         devices.forEach {
             groupAdapter.add(PairedDeviceItemAdapter(it) { device->
-                val intent = Intent(this, ControllLampActivity::class.java)
+                val intent = Intent(this, SwitchControlActivity::class.java)
                 intent.putExtra("device", device)
              startActivity(intent)
             })
