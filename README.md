@@ -7,6 +7,6 @@ Tech Stack :
 - Koin (Dependency Injection)
 
 # Screenshots
-https://github.com/yusriyadi/arudino-bluetooth-android-serial/blob/master/screenshots/image5.jpeg
-https://github.com/yusriyadi/arudino-bluetooth-android-serial/blob/master/screenshots/image3.png
-https://github.com/yusriyadi/arudino-bluetooth-android-serial/blob/master/screenshots/image1.jpeg
+![GitHub Logo] /screenshots/image5.jpeg
+![GitHub Logo] /screenshots/image3.png
+![GitHub Logo] /screenshots/image1.jpeg
