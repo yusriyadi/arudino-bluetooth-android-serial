@@ -1,10 +1,6 @@
-# Arduino-android-serial-bluetooth
+# Android x arduino serial bluetooth
 
-Arduino terkoneksi dengan android melalui bluetooth serial
-
-Tech Stack :
-- MVVM
-- Koin (Dependency Injection)
+android bluetooth x arduino
 
 # Screenshots
 
